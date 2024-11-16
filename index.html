@@ -64,23 +64,24 @@
     <iframe src="52___090-1-600.pdf"></iframe>
   </div>
 
-  <script>
+  <script type="module">
     // Firebase configuration
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/9.17.2/firebase-app.js";
+    import { getAuth, signInWithEmailAndPassword, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/9.17.2/firebase-auth.js";
+
     const firebaseConfig = {
       apiKey: "AIzaSyBf6HVZWz4mH8AAcLyQwMTLdMz0039l1PE",
       authDomain: "individual-nfc.firebaseapp.com",
       projectId: "individual-nfc",
-      storageBucket: "individual-nfc.firebasestorage.app",
+      storageBucket: "individual-nfc.firebaseapp.com",
       messagingSenderId: "127385211914",
       appId: "1:127385211914:web:a1ff1a070820e5830ffbf3",
       measurementId: "G-M4B4Q7TJ4D"
     };
 
     // Initialize Firebase
-    firebase.initializeApp(firebaseConfig);
-
-    // Firebase Authentication
-    const auth = firebase.auth();
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
 
     // Login function
     document.getElementById("loginForm").addEventListener("submit", (e) => {
@@ -88,7 +89,7 @@
       const email = document.getElementById("email").value;
       const password = document.getElementById("password").value;
 
-      auth.signInWithEmailAndPassword(email, password)
+      signInWithEmailAndPassword(auth, email, password)
         .then(() => {
           showPdfViewer();
         })
@@ -99,7 +100,7 @@
 
     // Logout function
     document.getElementById("logoutBtn").addEventListener("click", () => {
-      auth.signOut().then(() => {
+      signOut(auth).then(() => {
         showLoginForm();
       });
     });
@@ -117,7 +118,7 @@
     }
 
     // Check if the user is logged in
-    auth.onAuthStateChanged((user) => {
+    onAuthStateChanged(auth, (user) => {
       if (user) {
         showPdfViewer(); // User is logged in
       } else {
