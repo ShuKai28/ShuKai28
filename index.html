@@ -9,8 +9,13 @@
   <script src="https://www.gstatic.com/firebasejs/9.17.2/firebase-app.js"></script>
   <script src="https://www.gstatic.com/firebasejs/9.17.2/firebase-auth.js"></script>
   <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
     body {
-      font-family: Arial, sans-serif;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -18,31 +23,74 @@
       min-height: 100vh;
       margin: 0;
       padding: 20px;
-      background-color: #f4f4f4;
+      background-color: #e8f0fe; /* Soft blue background */
+      color: #333;
     }
     #loginSection, #pdfViewer {
       width: 100%;
       max-width: 500px;
-      background: white;
-      padding: 20px;
-      border-radius: 8px;
-      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      background-color: #ffffff;
+      border-radius: 12px;
+      padding: 25px;
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s;
     }
-    #pdfViewer {
-      display: none;
+    #loginSection:hover, #pdfViewer:hover {
+      transform: translateY(-5px);
+    }
+    h1 {
+      font-size: 24px;
+      margin-bottom: 20px;
+      color: #1a73e8; /* Google blue */
     }
     #loginForm {
       display: flex;
       flex-direction: column;
     }
-    input, button {
-      margin-bottom: 10px;
-      padding: 10px;
+    input {
+      padding: 12px;
+      margin-bottom: 15px;
+      border: 1px solid #d1d5db;
+      border-radius: 8px;
       font-size: 16px;
+      outline: none;
+      transition: border-color 0.3s;
+    }
+    input:focus {
+      border-color: #1a73e8;
+    }
+    button {
+      padding: 12px;
+      background-color: #1a73e8;
+      color: #ffffff;
+      font-size: 16px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+    button:hover {
+      background-color: #155ab3;
     }
     iframe {
       width: 100%;
       height: 600px;
+      border: none;
+      border-radius: 8px;
+      margin-top: 20px;
+    }
+    #logoutBtn {
+      padding: 10px;
+      background-color: #d32f2f;
+      color: #ffffff;
+      font-size: 14px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+    #logoutBtn:hover {
+      background-color: #b71c1c;
     }
   </style>
 </head>
@@ -70,13 +118,13 @@
     import { getAuth, signInWithEmailAndPassword, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/9.17.2/firebase-auth.js";
 
     const firebaseConfig = {
-      apiKey: "AIzaSyBf6HVZWz4mH8AAcLyQwMTLdMz0039l1PE",
-      authDomain: "individual-nfc.firebaseapp.com",
-      projectId: "individual-nfc",
-      storageBucket: "individual-nfc.firebaseapp.com",
-      messagingSenderId: "127385211914",
-      appId: "1:127385211914:web:a1ff1a070820e5830ffbf3",
-      measurementId: "G-M4B4Q7TJ4D"
+      apiKey: "YOUR_API_KEY",
+      authDomain: "YOUR_AUTH_DOMAIN",
+      projectId: "YOUR_PROJECT_ID",
+      storageBucket: "YOUR_STORAGE_BUCKET",
+      messagingSenderId: "YOUR_MESSAGING_SENDER_ID",
+      appId: "YOUR_APP_ID",
+      measurementId: "YOUR_MEASUREMENT_ID"
     };
 
     // Initialize Firebase
