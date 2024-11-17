@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>PDF Viewer with Login</title>
+  <title>Image Viewer with Login</title>
   <!-- Firebase JS SDK -->
   <script src="https://www.gstatic.com/firebasejs/9.17.2/firebase-app.js"></script>
   <script src="https://www.gstatic.com/firebasejs/9.17.2/firebase-auth.js"></script>
@@ -73,10 +73,8 @@
     button:hover {
       background-color: #155ab3;
     }
-    iframe {
+    img {
       width: 100%;
-      height: 600px;
-      border: none;
       border-radius: 8px;
       margin-top: 20px;
     }
@@ -113,7 +111,7 @@
 <body>
   <!-- Login Section -->
   <div id="loginSection" class="container">
-    <h1>Login to View PDF</h1>
+    <h1>Login to View Images</h1>
     <form id="loginForm">
       <input type="email" id="email" placeholder="Email" required>
       <input type="password" id="password" placeholder="Password" required>
@@ -123,10 +121,13 @@
     <button class="redirect-button" onclick="window.location.href='https://nfc-tagged-aircraft-maintenance-m-git-ec3670-shukai28s-projects.vercel.app/index.html'">Visit NFC Manuals Page</button>
   </div>
 
-  <!-- PDF Viewer Section after login -->
-  <div id="pdfViewer" class="container" style="display: none;">
-    <h1>PDF Viewer</h1>
-    <iframe src="52___090-1-600.pdf"></iframe>
+  <!-- Image Viewer Section after login -->
+  <div id="imageViewer" class="container" style="display: none;">
+    <h1>Image Viewer</h1>
+    <img src="/mnt/data/1 of 6.png" alt="Image 1">
+    <img src="/mnt/data/2 of 6.png" alt="Image 2">
+    <img src="/mnt/data/3 of 6.png" alt="Image 3">
+    <img src="/mnt/data/6 of 6.png" alt="Image 6">
     <button id="logoutBtn">Logout</button>
     <!-- Redirect Button after login -->
     <button class="redirect-button" onclick="window.location.href='https://nfc-tagged-aircraft-maintenance-m-git-ec3670-shukai28s-projects.vercel.app/index.html'">Visit NFC Manuals Page</button>
@@ -141,7 +142,7 @@
       apiKey: "AIzaSyBf6HVZWz4mH8AAcLyQwMTLdMz0039l1PE",
       authDomain: "individual-nfc.firebaseapp.com",
       projectId: "individual-nfc",
-      storageBucket: "individual-nfc.firebaseapp.com",
+      storageBucket: "individual-nfc.appspot.com",
       messagingSenderId: "127385211914",
       appId: "1:127385211914:web:a1ff1a070820e5830ffbf3",
       measurementId: "G-M4B4Q7TJ4D"
@@ -159,7 +160,7 @@
 
       signInWithEmailAndPassword(auth, email, password)
         .then(() => {
-          showPdfViewer();
+          showImageViewer();
         })
         .catch((error) => {
           alert("Error: " + error.message);
@@ -173,22 +174,22 @@
       });
     });
 
-    // Function to show the PDF Viewer and hide the Login Form
-    function showPdfViewer() {
+    // Function to show the Image Viewer and hide the Login Form
+    function showImageViewer() {
       document.getElementById("loginSection").style.display = "none";
-      document.getElementById("pdfViewer").style.display = "block";
+      document.getElementById("imageViewer").style.display = "block";
     }
 
-    // Function to show the Login Form and hide the PDF Viewer
+    // Function to show the Login Form and hide the Image Viewer
     function showLoginForm() {
       document.getElementById("loginSection").style.display = "block";
-      document.getElementById("pdfViewer").style.display = "none";
+      document.getElementById("imageViewer").style.display = "none";
     }
 
     // Check if the user is logged in
     onAuthStateChanged(auth, (user) => {
       if (user) {
-        showPdfViewer(); // User is logged in
+        showImageViewer(); // User is logged in
       } else {
         showLoginForm(); // User is not logged in
       }
