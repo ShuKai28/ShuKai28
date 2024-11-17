@@ -26,7 +26,7 @@
       background-color: #e8f0fe; /* Soft blue background */
       color: #333;
     }
-    #loginSection, #pdfViewer {
+    .container {
       width: 100%;
       max-width: 500px;
       background-color: #ffffff;
@@ -35,7 +35,7 @@
       box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
       transition: transform 0.3s;
     }
-    #loginSection:hover, #pdfViewer:hover {
+    .container:hover {
       transform: translateY(-5px);
     }
     h1 {
@@ -88,6 +88,7 @@
       border-radius: 8px;
       cursor: pointer;
       transition: background-color 0.3s;
+      margin-top: 10px;
     }
     #logoutBtn:hover {
       background-color: #b71c1c;
@@ -96,7 +97,7 @@
 </head>
 <body>
   <!-- Login Section -->
-  <div id="loginSection">
+  <div id="loginSection" class="container">
     <h1>Login to View PDF</h1>
     <form id="loginForm">
       <input type="email" id="email" placeholder="Email" required>
@@ -106,10 +107,10 @@
   </div>
 
   <!-- PDF Viewer Section -->
-  <div id="pdfViewer">
+  <div id="pdfViewer" class="container" style="display: none;">
     <h1>PDF Viewer</h1>
-    <button id="logoutBtn">Logout</button>
     <iframe src="52___090-1-600.pdf"></iframe>
+    <button id="logoutBtn">Logout</button>
   </div>
 
   <script type="module">
@@ -126,7 +127,7 @@
       appId: "1:127385211914:web:a1ff1a070820e5830ffbf3",
       measurementId: "G-M4B4Q7TJ4D"
     };
-
+    
     // Initialize Firebase
     const app = initializeApp(firebaseConfig);
     const auth = getAuth(app);
